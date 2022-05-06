@@ -1,39 +1,27 @@
-"""
-**************************************************************
-Time complexity for this project: 
-
-The Time Complexity for the search functions is: O(n),
-because each function iterates over the number of existing services.
-all the other functions have constant times, so their time complexity is O(1).
-the overall time complexity of this project is O(n)
-
-The Space Complexity for this project is: O(n)
-
-**************************************************************
-"""
-
 import os
 import pandas as pd
 from time import sleep
 from mp import get_mp
 from art import logo
 
-path = r"C:\Users\yaniv\Desktop\programming\Python\Syntax_ and_Basics\side stuff\Password_Manager\services.txt"
+# select a location to store all the user data:
+path = r"Enter_your_path_here/services.txt"
+# Set your master password in 'mp.py'. The default password is: 1234
 master_pass = get_mp()
 
 
 class Service:
     def __init__(self, service="", user="", passw=""):
-        # we can't know the values of the parameters we'll receive when writing the constructor, so we initiallize the instant
-        # with empty strings and change the strings when recieving data from the user.
-        # if we wont initiallize the object with empty strings, we will receive an error for not
+        # we can't know the values of the parameters we'll receive when writing the constructor, so we initialize the instant
+        # with empty strings and change the strings when receiving data from the user.
+        # if we wont initialize the object with empty strings, we will receive an error for not
         # sending arguments for "service", "user", "passw"
         self.service = service
         self.user = user
         self.passw = passw
 
     def create_service(self):
-        """Create attributes for a new instanse of the Service"""
+        """Create attributes for a new instance of the Service"""
         self.service = input("Please enter the name of the service: ").capitalize()
         self.user = input("Please enter UserName: ")
         self.passw = input("Please enter Password: ")
@@ -53,7 +41,7 @@ class Service:
             and len(mytuple[2]) >= 4
         ):
             # checks if one or more of the attributes contains none ASCII characters.
-            # also checks if the name of the server is longer than 1 (nor an enpty string), and the length of 'user' and 'passw' is at least 4 characters each.
+            # also checks if the name of the server is longer than 1 (nor an empty string), and the length of 'user' and 'passw' is at least 4 characters each.
             fh.write(str(mytuple))
             fh.write("\n")
             fh.close()
@@ -70,7 +58,7 @@ class Service:
 
 
 def file_exist(file):
-    """check if a txt file exists"""
+    """check if a .txt file exists"""
     return (
         True
         if os.path.isfile(file)
@@ -116,7 +104,7 @@ def search_services(file, service):
 
 
 def delete_services(file):
-    """deletion menu. deletes the txt file from the ROM"""
+    """deletion menu. deletes the .txt file from the memory"""
     chances = 5
     while chances > 0:
         passw = input(
@@ -182,14 +170,14 @@ def main():
             "[1] Add new user and password\n"
             "[2] Check if service exists\n"
             "[3] View existing services \n"
-            "[4] Delete all registred services\n"
+            "[4] Delete all registered services\n"
             "[5] End Program\n\n"
             "Choose a number [1-5]: "
         )
         try:
             choose = int(input(msg))
         except:  # pressing enter before typing a number can raise an exception
-            print("\n* Please enter a vaild number between 1-5 *")
+            print("\n* Please enter a valid number between 1-5 *")
             sleep(3)
         else:
             print("")
@@ -219,7 +207,7 @@ def main():
                     sleep(1)
                     break
                 case _:  # ? used as "else"
-                    print("* Please enter a vaild number between 1-4 *")
+                    print("* Please enter a valid number between 1-4 *")
                     sleep(3)
 
 
@@ -247,3 +235,18 @@ if __name__ == "__main__":
             sleep(3)
             main()
             break
+
+
+"""
+**************************************************************
+Time complexity for this project: 
+
+The Time Complexity for the search functions is: O(n),
+because each function iterates over the number of existing services.
+all the other functions have constant times, so their time complexity is O(1).
+the overall time complexity of this project is O(n)
+
+The Space Complexity for this project is also: O(n)
+
+**************************************************************
+"""

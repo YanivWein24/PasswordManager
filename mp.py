@@ -1,2 +1,2 @@
 def get_mp():
-    return "2402"
+    return "1234"
